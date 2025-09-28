@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fafafa;
+  color: #222;
+  line-height: 1.5;
+  padding: 2rem;
+}
+:root {
+ --girgio-nero: #222222;
+}
+
+a {
+  text-decoration: none;
+ color: black;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 10px; /* distanza dalla cima */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  max-width: 1100px;
+  background-color: var(--girgio-nero);
+  border: 2px solid var(--girgio-nero);
+  border-radius: 12px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+/* Sezioni */
+.navbar-left,
+.navbar-right {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 6px;
+  color: white;
+  border: 2px solid var(--girgio-nero);
+  transition: border 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+
+
+.navbar a:hover {
+  background-color: var(--girgio-nero);
+  color: #ffffff;
+  border-radius: 6px;
+  border: 2px solid white;
+}
+
+#home-link {
+  background-color: var(--girgio-nero);
+  color: #ffffff;
+  border-radius: 6px;
+  border: 2px solid white;
+}
+
+/* Contenuto sotto la navbar */
+.container {
+  margin-top: 25px;
+  padding: 20px;
+}
+.title {
+  font-size: 5rem;       /* più grande */
+  font-weight: 420;      /* più sottile */
+  line-height: 0.9;      /* riduce lo spazio verticale tra le due righe */
+  margin-bottom: 2rem;
+  padding-top: 0.3em;
+}
+
+.title-wrap {
+  display: flex;
+  align-items: flex-start;  /* allinea in alto titolo, linea e box */
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Linea verticale */
+.title-divider {
+  width: 2px;              /* spessore linea */
+  background: #000;        /* colore linea */
+  margin: 1rem 1rem;
+  align-self: stretch;     /* la linea si allunga quanto il titolo */
+  margin-left: 5%;
+}
+
+/* Box con le info corso */
+.course-info {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  padding-top: 16%;
+}
+
+.course-info p {
+  margin-bottom: 0.4rem;
+}
+
+.course-info p:last-child {
+  margin-bottom: 0;
+}
+
+.title span {
+  color: #e4572e;
+  display: block;
+  /* font-weight: bolder; */
+}
+
+.star {
+  font-size: 18rem;        /* si può regolare */
+  font-weight: lighter;
+  color: #a6d99d;
+  line-height: 1;
+  display: flex;
+  align-items: center;    /* centra verticalmente l’asterisco */
+}
+
+/* Griglia dei blocchi */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.step {
+  padding: 2rem;
+  border-radius: 10px;
+  min-height: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.step:hover {
+  transform: scale(1.03); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+}
+.step h2 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.step-orange .number {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-weight: bold;
+}
+.step-green .number  {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-weight: bold;
+}
+.step-grey .number  {
+  font-size: 0.9rem;
+  color: #000000;
+  margin-bottom: 4rem;
+  font-weight: bold;
+}
+.step-blue .number  {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-weight: bold;
+}
+.step-white .number  {
+  font-size: 0.9rem;
+  color: #000000;
+  margin-bottom: 4rem;
+  font-weight: bold;
+}
+.step-black .number  {
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  font-weight: bold;
+}
+
+/* Colori */
+.step-orange {
+  background: #f47b50;
+  color: white;
+}
+
+.step-grey {
+  background: #f1f1f1;
+  color: black;
+}
+
+.step-green {
+  background: #a6d99d;
+  color: white;
+}
+
+.step-white {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: black;
+}
+
+.step-blue {
+  background: #b2c2ee;
+  color: white;
+}
+
+.step-black {
+  background-color: var(--girgio-nero);
+  color: white;
+}
+
+/* Freccia con "start" */
+.start-arrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.arrow {
+  flex: 1;
+  height: 2px;
+  background: #000;
+  position: relative;
+}
+
+
+/* Responsività */
+@media (max-width: 768px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
