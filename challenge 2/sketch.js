@@ -137,20 +137,17 @@ function draw() {
   // --- Testo ---
   push ()
   fill(240, 60, 40) // colore text
-  textSize(25)
+  textSize(20)
   textFont ('Georgia')
   textStyle (ITALIC)
-  text ("Rodo the rocking horse",cx-123,cy+190)
+  text ("Rodo the rocking horse",cx-95,cy+190)
   pop ()
 
   push ()
-
   fill(240, 60, 40) // colore text
   textSize(10)
   textFont ('Arial')
-  text ("ILLUSTRAZIONE DALL'ALBO ILLUSTRATO",cx-91,cy+209)
-  textStyle (ITALIC)
-  text ("TONDO TONDO E QUADRATO, FREDUN SHAPUR, TOPI PITTORI, 2015",cx-160,cy+221)
-
+  // text ("Tondo, Tondo e Quadrato, Fredun Shapur, Topi pittori, 2015.",cx-120,cy+210)
+  text ("TONDO TONDO E QUADRATO, FREDUN SHAPUR, TOPI PITTORI, 2015",cx-160,cy+210)
   pop ()
 }
