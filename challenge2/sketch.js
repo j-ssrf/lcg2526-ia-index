@@ -2,7 +2,7 @@ let xMax = 500;
 let yMax = 600;
 let angoloRot = -0.3;
 let cx = xMax/2;   // centro X del semicerchio
-let cy = yMax-280; // centro Y del semicerchio
+let cy = yMax-290; // centro Y del semicerchio
 let puntoX = cx; // coordinata X del centro di rotazione
 let puntoY = cy; // coordinata Y del centro di rotazione
 let angoloBase = 0.2; // angolo iniziale del cavallo a riposo
@@ -137,20 +137,27 @@ function draw() {
   // --- Testo ---
   push ()
   fill(240, 60, 40) // colore text
-  textSize(25)
+  textSize(28)
   textFont ('Georgia')
   textStyle (ITALIC)
-  text ("Rodo the rocking horse",cx-123,cy+190)
+  text ("Rodo the rocking horse",cx-142,cy+200)
   pop ()
 
   push ()
 
   fill(240, 60, 40) // colore text
-  textSize(10)
+  textSize(8)
   textFont ('Arial')
-  text ("ILLUSTRAZIONE DALL'ALBO ILLUSTRATO",cx-91,cy+209)
+  text ("ILLUSTRAZIONE DALL'ALBO ILLUSTRATO",cx-78,cy+227)
   textStyle (ITALIC)
-  text ("TONDO TONDO E QUADRATO, FREDUN SHAPUR, TOPI PITTORI, 2015",cx-160,cy+221)
+  text ("TONDO TONDO E QUADRATO, FREDUN SHAPUR, TOPI PITTORI, 2015",cx-129,cy+236.5)
 
+  pop ()
+  
+  // --- Sottolineatura ---
+  push ()
+  fill (240, 60, 40)
+  rectMode (CENTER)
+  rect (xMax/2,cy+212,300,1.5,3)
   pop ()
 }
