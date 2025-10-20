@@ -1,21 +1,66 @@
+//variables for canva
 let xMax = 400;
 let yMax = 600;
-
+//variables for rocket initial position
 let xRocket = xMax/2;
 let yRocket = yMax*0.6;
-
+let rocketHeight = 180;
+let rocketWidth = 80;
+//other global variables
 let table;
 let star_img;
+
+//learn to interact with DOM
+let buttonText;
+let buttonRolling;
+let greeting;
+let inpuText;
+let bckgcolor = "#C0E1FC"
+let sliderColor;
+let rocketBodyColor = 220;
+
+
+let colors = [ "red", "green", "pink", "blue", 
+  "orange", "yellow" , "#C0E1FC", "salmon", 220];
 
 function preload() {
   table = loadTable("stars.csv", "csv", "header");
   star_img = loadImage("star.png");
 }
 
-
 function setup() {
   createCanvas(xMax, yMax);
   frameRate(30);
+  greeting = createElement('h2', 'What do you want to display?');
+  greeting.style('color', 'deeppink');
+  greeting.position(20, yMax - 50);
+
+  // min, max, default, step
+  sliderColor = createSlider(0, 7, 7, 1);
+  sliderColor.position(20, yMax);
+  sliderColor.size(100);
+
+  inpuText = createInput();
+  inpuText.position(20, yMax -  65);
+
+  buttonText = createButton('submit');
+  buttonText.position(inpuText.x + inpuText.width,yMax - 65);
+  buttonText.mousePressed(newTextFunc);
+
+
+  buttonRolling = createButton("roll the color!");
+  buttonRolling.position(20, yMax - 100);
+  buttonRolling.mousePressed(rollColor);
+  buttonRolling.style('background-color', '#ffffff');
+  // Hover effect using mouse events
+  buttonRolling.mouseOver(() => {
+    buttonRolling.style('background-color', '#cccccc'); // hover color
+  });
+  buttonRolling.mouseOut(() => {
+    buttonRolling.style('background-color', '#ffffff'); // normal color
+  });
+  buttonRolling.style('transition', 'background-color 0.1s');
+
 }
 
 function drawStarsFromFile() {
@@ -27,19 +72,18 @@ function drawStarsFromFile() {
   }
 }
 
-
 // Function to draw a rocket at position (x, y) with scale s
-function drawRocket(xRocket, yRocket, scl=1, angle=0) {
+function drawRocket(x, y, scl=1, angle=0) {
   push();               // save current drawing settings
-  translate(xRocket, yRocket);      // move origin to rocket position
+  translate(x, y);      // move origin to rocket position
   scale(scl);             // scale rocket size if needed
   rotate(angle);          // rotate rocket if needed
   // rocket body
-  fill(220);            // light gray
+  fill(rocketBodyColor);            // light gray
   stroke(40);           // dark outline
   strokeWeight(2);
   rectMode(CENTER);     // rectangle drawn from its center
-  rect(0, 30, 80, 180, 20); // body rectangle with rounded corners
+  rect(0, 30, rocketWidth, rocketHeight, 20); // body rectangle with rounded corners
 
   // nose cone
   fill(200, 40, 40);    // red
@@ -61,28 +105,76 @@ function drawRocket(xRocket, yRocket, scl=1, angle=0) {
   pop(); // restore settings (so it won’t affect other drawings)
 }
 
-function moveRocket(yRocket, step=1) {
-
-  yRocket = yRocket - step;
+function moveRocket(y, step=1) {
+  y = y - step;
   let soglia = -(yMax * 0.6);
-  if (yRocket < soglia) {
-    yRocket = yMax;
+  if (y < soglia) {
+    y = yMax;
   }
-  return yRocket;
+  return y;
 }
 
 function draw() {
-  background("#C0E1FC");
-
-  fill(0); //bianco
+  background(bckgcolor);
+  rocketBodyColor = colors[ceil(sliderColor.value())];
+  fill(0); //nero
   textSize(20);
   text("mouseX: " + mouseX + ",\
      mouseY: " + mouseY,20,20);
 
+  text("Color value "+ bckgcolor, 20, 70);
+
   drawStarsFromFile();
-  drawRocket(xRocket, yRocket, 0.75, 20); 
+  drawRocket(xRocket, yRocket, 0.75, 0); 
 
   xRocket = (xRocket +1) % xMax;
   yRocket = moveRocket(yRocket); 
+  let isover=false;
+  if(isMouseOverRocket() ){
+      isover=true
+  } else{
+    isover=false;
+  }
+  text("Is over the rocket? "+ isover, 20, 100);
 
+}
+
+
+function isMouseOverRocket() { 
+  return (mouseX > xRocket-(rocketWidth/2) &&
+          mouseX < xRocket + (rocketWidth/2) &&
+          mouseY > yRocket-(rocketHeight/2) &&
+          mouseY < yRocket + yRocket+(rocketHeight/2));
+
+}
+
+function mousePressed() {
+    // Start/stop the animation loop
+    if (isLooping()) { //https://p5js.org/reference/p5/isLooping/
+      noLoop(); //https://p5js.org/reference/p5/noLoop/
+    } else {
+      loop(); //https://p5js.org/reference/p5/loop/
+    }
+}
+
+
+function keyPressed() { //https://p5js.org/reference/p5/keyPressed/
+  // Draw one frame
+  redraw(); //https://p5js.org/reference/p5/redraw/
+}
+
+function rollColor(){
+  let  idx = random(1,8);
+  //vogliamo solo numeri interi
+  //intero inferiore, 1.1 --> 1
+  // bckgcolor = floor(idx);
+  //intero superiore, 1.1 --> 2
+  bckgcolor = colors[ceil(idx)];
+  //redraw();
+}
+
+
+function newTextFunc(){
+  let text = inpuText.value();
+  greeting.html("The text now is " + text);
 }
