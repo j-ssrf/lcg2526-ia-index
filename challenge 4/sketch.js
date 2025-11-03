@@ -23,7 +23,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1400, 600);
+  createCanvas(1400, 1600);
   
   // Creo array con tutti i droni e le loro tabelle
   droni.push({ nome: nomiDroni[0], colore: coloriDroni[0], tabella: tabellaAlfa });
@@ -47,22 +47,40 @@ function draw() {
   // Titolo principale in alto a sinistra
   fill(0);
   textFont('Arial');
-  textSize(32);
+  textSize(70);
   textAlign(LEFT, TOP);
   textStyle(BOLD);
-  text("POSIZIONE X", 80, 50);
+  text("variazione nel tempo dei parametri", 80, 50);
   
   // Sottotitolo
   textSize(16);
-  textStyle(NORMAL);
+  textStyle(BOLD);
   fill(100);
-  text("Variazione nel tempo", 80, 90);
+  text("POSIZIONE X", 80, 210);
   
-  // Disegno il grafico che occupa  tutta la larghezza
-  disegnaGrafico(80, 140, width - 160, height - 240, "x_pos");
+  // Disegno il grafico x
+  disegnaGrafico(80, 230, width - 160, 400, "x_pos")
+
+  // Sottotitolo
+  textSize(16);
+  textStyle(BOLD);
+  fill(100);
+  text("POSIZIONE Y", 80, 210+460);
+
+  // disegno grafico y
+  disegnaGrafico(80, 230+460, width - 160, 400, "y_pos")
+
+  // Sottotitolo
+  textSize(16);
+  textStyle(BOLD);
+  fill(100);
+  text("POSIZIONE Z", 80, 210+460*2);
+
+  // disegno grafico y
+  disegnaGrafico(80, 230+460*2, width - 160, 400, "z_pos")
 
   
-  // Disegno la leggenda in basso
+  // Disegno la leggenda
   disegnaLegenda();
 }
 
@@ -138,14 +156,14 @@ function disegnaGrafico(x, y, larghezza, altezza, parametro) {
   textSize(14);
   textStyle(BOLD);
   textAlign(CENTER, TOP);
-  text("STEPS", larghezza / 2, altezza - margine + 15);
+  text("STEPS", larghezza- margine-15, altezza - margine + 25);
   
   // Label asse Y (ruotato di 90 gradi)
   push();
   translate(25, altezza / 2);
   rotate(-PI / 2);
   textAlign(CENTER, CENTER);
-  text("POSITION (m)", 0, 0);
+  text("POSITION (m)", 80, 0);
   pop();
   
   // VALORI NUMERICI SULL'ASSE Y
@@ -201,7 +219,7 @@ function disegnaGrafico(x, y, larghezza, altezza, parametro) {
 
 function disegnaLegenda() {
   // Disegno la leggenda in basso con i nomi e colori dei droni
-  let posizioneY = height - 70;
+  let posizioneY = 160;
   let posizioneX = 80;
   
   for (let i = 0; i < droni.length; i++) {
