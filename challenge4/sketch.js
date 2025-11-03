@@ -163,7 +163,7 @@ function disegnaGrafico(x, y, larghezza, altezza, parametro) {
   translate(25, altezza / 2);
   rotate(-PI / 2);
   textAlign(CENTER, CENTER);
-  text("POSITION (m)", 80, 0);
+  text("POSITION ", 115, 0);
   pop();
   
   // VALORI NUMERICI SULL'ASSE Y
